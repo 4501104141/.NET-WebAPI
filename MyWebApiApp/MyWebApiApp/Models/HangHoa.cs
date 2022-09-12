@@ -13,6 +13,7 @@ namespace MyWebApiApp.Models
 
     public class HangHoa : HangHoaVM
     {
+        //Guid ==> auto increment
         public Guid MaHangHoa { get; set; }
     }
 }
