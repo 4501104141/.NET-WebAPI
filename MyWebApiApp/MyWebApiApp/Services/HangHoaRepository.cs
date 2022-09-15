@@ -11,14 +11,13 @@ namespace MyWebApiApp.Services
     public class HangHoaRepository : IHangHoaRepository
     {
         private readonly MyDbContext _context;
-        public static int PAGE_SIZE { get; set; } = 5;
 
         public HangHoaRepository(MyDbContext context)
         {
             _context = context;
         }
 
-        public List<HangHoaModel> GetAll(string search, double? from, double? to, string sortBy, int page = 1)
+        public List<HangHoaModel> GetAll(string search, double? from, double? to, string sortBy, int page = 1, int PAGE_SIZE = 5)
         {
             var allProducts = _context.HangHoas.Include(hh => hh.Loai).AsQueryable();
 
@@ -75,13 +74,6 @@ namespace MyWebApiApp.Services
             //});
 
             //return result.ToList();
-        }
-
-        public void Create(Data.HangHoa a)
-        {
-            a.MaHh = Guid.NewGuid();
-            _context.Add(a);
-            _context.SaveChanges();
         }
     }
 }

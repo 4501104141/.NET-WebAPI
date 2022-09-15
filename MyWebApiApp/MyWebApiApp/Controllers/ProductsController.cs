@@ -22,23 +22,17 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult GettAllProducts(string search, double? from, double? to, string sortBy, int page = 1)
+        public IActionResult GettAllProducts(string search, double? from, double? to, string sortBy, int page = 1, int PAGE_SIZE = 5)
         {
             try
             {
-                var result = _hangHoaResposity.GetAll(search, from, to, sortBy, page);
+                var result = _hangHoaResposity.GetAll(search, from, to, sortBy, page, PAGE_SIZE);
                 return Ok(result);
             }
             catch
             {
                 return BadRequest("We can't get the product.");
             }
-        }
-        [HttpPost]
-        public IActionResult Add(Data.HangHoa model)
-        {
-            _hangHoaResposity.Create(model);
-            return Ok();
         }
     }
 }
